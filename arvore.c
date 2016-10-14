@@ -69,8 +69,18 @@ link buscaR (ARVORE a, link h, int key) {
     return buscaR(a, h->right, key);
   return buscaR(a, h->left, key);
 }
-
-
+link buscaRP(ARVORE a, link h, int key){
+  if(h == a->z) return NULL;
+  if(h->left-key == hey) return h;
+  if(h->right->key == key) return h;
+  if(h->key == key) return h;
+  if( h->key < key) 
+    return buscaR(a, h->right, key);
+  return buscaR(a, h->left, key);
+}
+link buscaPai(ARVORE a, int key){
+  return buscaRP(a, a->raiz, key);
+}
 link busca (ARVORE a, int key){
   return buscaR(a, a->raiz, key);
 }
@@ -145,10 +155,25 @@ link rotR(ARVORE a, link h) {
   return x;
 }
 
-#if 0
-void remover (ARVORE a, int key);
-void removerNo (ARVORE a, link node);
+void remover (ARVORE a, int key){
+  link aux;
+  aux = busca(a, key);
+  link pai;
+  pai = buscaPai(a, key);
+  if(aux->left == a->z && aux->right == a->z){
+    if(pai->left->key == key)  
+      pai->left = a->z;
+    if(pai->right->key == key)
+      pai->right -> a->z;
+    else
+      pai = a->z;
+    free(aux);
+    return 0;
+  }else
+  
+}
+
 void destroiArvore(ARVORE a);
-#endif 
+
 
 
